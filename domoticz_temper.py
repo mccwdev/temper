@@ -22,8 +22,13 @@ def main():
 
     # for device in temper_data:
     device = temper_data[0]
+    # from pprint import pprint; pprint(temper_data)
     temp = device['internal temperature']
-    hum = device['internal humidity']
+    hum = 0
+    try:
+        hum = device['internal humidity']
+    except:
+        pass
     temp_hum = str(temp+TEMP_CORRECTION) + ';' + str(hum+HUM_CORRECTION) + ';0'
 
     # Update device in Domoticz
