@@ -14,15 +14,15 @@ DOMOTICZ_DEVICE_IDX = 6505  # Fill in your Domoticz device ID
 DOMOTICZ_URL = "http://%s:8080" % DOMOTICZ_HOST
 TEMP_CORRECTION = -1.8
 HUM_CORRECTION = 0
-
+DEVICE_ID = 0
 
 def main():
     temper = Temper()
     temper_data = temper.read()
 
     # for device in temper_data:
-    device = temper_data[0]
-    # from pprint import pprint; pprint(temper_data)
+    device = temper_data[DEVICE_ID]
+    #from pprint import pprint; pprint(temper_data)
     temp = device['internal temperature']
     hum = 0
     try:
