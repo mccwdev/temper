@@ -16,14 +16,14 @@ DOMOTICZ_URL = "http://%s:8080" % DOMOTICZ_HOST
 TEMP_CORRECTION = 0
 TEMP_EXT_CORRECTION = 2
 HUM_CORRECTION = 0
-
+DEVICE_ID = 0
 
 def main():
     temper = Temper()
     temper_data = temper.read()
 
     # for device in temper_data:
-    device = temper_data[0]
+    device = temper_data[DEVICE_ID]
     temp = device.get('internal temperature')
     temp_ext = device.get('external temperature')
     hum = device.get('internal humidity')
@@ -35,7 +35,6 @@ def main():
         temp_str = str(temp+TEMP_CORRECTION)
     if temp_ext:
         temp_ext_str = str(temp_ext+TEMP_EXT_CORRECTION)
-
 
     # Update device in Domoticz
     if temp_str:
@@ -54,7 +53,6 @@ def main():
         print(url)
         resp = requests.get(url)
         print(resp.text)
-
 
 
 # Run the main function when the script is executed
